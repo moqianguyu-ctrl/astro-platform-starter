@@ -1,19 +1,189 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Markdown from '../components/Markdown.astro';
-
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+// src/pages/index.astro （或 src/pages/nav.astro）
+// 这是一个纯静态的 hao123 风格网址导航页面
+const title = '我的导航 - 上网从这里开始';
 ---
 
-<Layout title="Welcome to Astro.">
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://YouTube.com/" class="btn btn-lg sm:min-w-64">open the YouTube</a>
-    </p>
-</Layout>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content="快速访问热门网站、搜索、视频、小说、购物等" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Microsoft YaHei', Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      padding: 40px 0 20px;
+      background: linear-gradient(to bottom, #4a90e2, #357abd);
+      color: white;
+    }
+    h1 {
+      margin: 0;
+      font-size: 3em;
+    }
+    .search-box {
+      margin: 30px auto;
+      max-width: 600px;
+    }
+    .search-box form {
+      display: flex;
+      background: white;
+      border-radius: 50px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .search-box input {
+      flex: 1;
+      border: none;
+      padding: 16px 24px;
+      font-size: 1.1em;
+      outline: none;
+    }
+    .search-box button {
+      background: #4a90e2;
+      color: white;
+      border: none;
+      padding: 0 30px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .search-box button:hover {
+      background: #357abd;
+    }
+    .nav-section {
+      margin: 40px 0;
+    }
+    .nav-section h2 {
+      font-size: 1.6em;
+      border-bottom: 2px solid #4a90e2;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      color: #4a90e2;
+    }
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px;
+    }
+    .link-item a {
+      display: block;
+      padding: 12px;
+      background: white;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      font-size: 1.05em;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: all 0.2s;
+    }
+    .link-item a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+      color: #4a90e2;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      color: #777;
+      font-size: 0.9em;
+      border-top: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>我的导航</h1>
+    <p>上网从这里开始 · 快速 · 简单 · 实用</p>
+  </header>
+
+  <div class="container">
+
+    <!-- 搜索框（默认用百度，你可以改成其他） -->
+    <div class="search-box">
+      <form action="https://www.baidu.com/s" method="get" target="_blank">
+        <input type="text" name="wd" placeholder="输入关键词搜索..." autocomplete="off" />
+        <button type="submit">搜索</button>
+      </form>
+    </div>
+
+    <!-- 热门门户 -->
+    <div class="nav-section">
+      <h2>热门门户</h2>
+      <div class="link-grid">
+        <div class="link-item"><a href="https://www.baidu.com" target="_blank">百度</a></div>
+        <div class="link-item"><a href="https://www.google.com" target="_blank">Google</a></div>
+        <div class="link-item"><a href="https://www.sina.com.cn" target="_blank">新浪</a></div>
+        <div class="link-item"><a href="https://weibo.com" target="_blank">微博</a></div>
+        <div class="link-item"><a href="https://www.qq.com" target="_blank">腾讯</a></div>
+        <div class="link-item"><a href="https://www.163.com" target="_blank">网易</a></div>
+      </div>
+    </div>
+
+    <!-- 视频 & 影视 -->
+    <div class="nav-section">
+      <h2>视频 & 影视</h2>
+      <div class="link-grid">
+        <div class="link-item"><a href="https://www.bilibili.com" target="_blank">哔哩哔哩</a></div>
+        <div class="link-item"><a href="https://v.qq.com" target="_blank">腾讯视频</a></div>
+        <div class="link-item"><a href="https://www.iqiyi.com" target="_blank">爱奇艺</a></div>
+        <div class="link-item"><a href="https://www.youku.com" target="_blank">优酷</a></div>
+        <div class="link-item"><a href="https://www.mgtv.com" target="_blank">芒果TV</a></div>
+      </div>
+    </div>
+
+    <!-- 购物 -->
+    <div class="nav-section">
+      <h2>购物 & 电商</h2>
+      <div class="link-grid">
+        <div class="link-item"><a href="https://www.taobao.com" target="_blank">淘宝</a></div>
+        <div class="link-item"><a href="https://www.jd.com" target="_blank">京东</a></div>
+        <div class="link-item"><a href="https://www.pinduoduo.com" target="_blank">拼多多</a></div>
+        <div class="link-item"><a href="https://www.tmall.com" target="_blank">天猫</a></div>
+      </div>
+    </div>
+
+    <!-- 小说 & 阅读 -->
+    <div class="nav-section">
+      <h2>小说 & 阅读</h2>
+      <div class="link-grid">
+        <div class="link-item"><a href="https://book.qidian.com" target="_blank">起点中文网</a></div>
+        <div class="link-item"><a href="https://www.zongheng.com" target="_blank">纵横中文网</a></div>
+        <div class="link-item"><a href="https://www.jjwxc.net" target="_blank">晋江文学城</a></div>
+      </div>
+    </div>
+
+    <!-- 工具 & 其他 -->
+    <div class="nav-section">
+      <h2>常用工具</h2>
+      <div class="link-grid">
+        <div class="link-item"><a href="https://map.baidu.com" target="_blank">百度地图</a></div>
+        <div class="link-item"><a href="https://www.zhihu.com" target="_blank">知乎</a></div>
+        <div class="link-item"><a href="https://music.163.com" target="_blank">网易云音乐</a></div>
+        <div class="link-item"><a href="https://translate.google.com" target="_blank">Google 翻译</a></div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2026 我的导航 · 纯手工打造 · <a href="https://github.com/moqianguyu-ctrl/astro-platform-starter" style="color:#777;">GitHub</a></p>
+  </footer>
+
+</body>
+</html>
