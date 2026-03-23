@@ -1,8 +1,8 @@
 ---
-import Logo from '../components/Logo.astro';
+import Logo from './Logo.astro';  // 假设 Logo 存在，如果报错后面告诉我
 
 const navItems = [
-    { linkText: 'Home', href: '/' },
+    { linkText: '首页', href: '/' },
     { linkText: 'Revalidation', href: '/revalidation' },
     { linkText: 'Image CDN', href: '/image-cdn' },
     { linkText: 'Edge Function', href: '/edge' },
@@ -10,21 +10,23 @@ const navItems = [
 ];
 ---
 
-<nav class="flex flex-wrap items-center gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
-    <a href="/">
-        <Logo />
+<header class="sticky top-0 z-50 bg-gray-900/80 backdrop-blur-md border-b border-gray-800">
+  <nav class="max-w-6xl mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
+    <a href="/" class="flex items-center">
+      <Logo />
     </a>
-    {
-        !!navItems?.length && (
-            <ul class="flex flex-wrap gap-x-4 gap-y-1">
-                {navItems.map((item) => (
-                    <li>
-                        <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2">
-                            {item.linkText}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        )
-    }
-</nav>
+
+    <ul class="flex flex-wrap gap-x-6 gap-y-2">
+      {navItems.map((item) => (
+        <li>
+          <a 
+            href={item.href}
+            class="text-gray-300 hover:text-white transition font-medium"
+          >
+            {item.linkText}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
